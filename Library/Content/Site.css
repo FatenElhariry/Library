@@ -1,0 +1,62 @@
+﻿html{
+    direction:rtl;
+}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #f3f3f3;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 20px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+/*Added by me ARABIC */
+
+@media (min-width: 992px){
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11 {
+        float: right;
+    }
+}
+
+.progress-bar {
+    float: right;
+}
+.nav-pills > li {
+    float: right;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.pager  a{
+    float:none !important;
+}
+
+div label.label {
+    width: 100%;
+    color: #b38fa1;
+    font-size: 16px;
+}
+
+.btn.btn-primary {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 17px;
+}

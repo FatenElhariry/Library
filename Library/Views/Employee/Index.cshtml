@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="panel">
+        <div class="panel-body">
+            @using (Html.BeginForm("AddEmployee", "Employee", "post"))
+            {
+                <div class="col-md-6">
+                    <label class="label"> 
+                        الاسم الأول 
+                        <input type="text" class="form-control" name="firstName"/>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="label">
+                        الاسم الأخير 
+                        <input type="text" class="form-control" name="lastName" />
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="label">
+                        تاريخ التعيين
+                        <input type="text" class="form-control" name="hireDate"/>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="label">
+                        الراتب
+                        <input type="text" class="form-control" name="salary" />
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="label">
+                        البريد الألكترونى
+                        <input type="text" class="form-control" name="Email" />
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="label">
+                        رقم الهاتف
+                        <input type="text" class="form-control" name="phoneNumber" />
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-xs-6 col-md-3">
+                       
+                            <input type="file" class="" name="cv" width="0%" />
+                        
+                    </div>
+
+                </div>
+                <div class="col-md-12 text-center">
+                    <input type="submit" value="حفظ" class="btn btn-primary" />
+                </div>
+            }
+            </div>
+        
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Uploader.js"></script>
+}

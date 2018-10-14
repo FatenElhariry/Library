@@ -1,0 +1,38 @@
+﻿@model List<Library.Models.Author>
+    <style>
+        table tr td , table tr th {
+            text-align:center;
+        }
+    </style>
+<table class="table table-responsive table-bordered" style="table-layout:fixed;">
+    <thead>
+        <tr>
+            <th width="5%"> م </th>
+            <th width="25%"> الأسم </th>
+            <th width="40%"> السيرة الذاتية </th>
+            <th width="20%"> تاريخ الميلاد </th>
+            <th width="10%"> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null || Model.Count == 0)
+        {
+            <tr>
+                <td class="text-center" colspan="5"> لا يوجد بيانات </td>
+            </tr>
+        }
+        else
+        {
+            for (int i = 0; i < Model.Count; i++ )
+            {
+                <tr>
+                    <td> @( i + 1 ) </td>
+                    <td> @(Model[i].Name) </td>
+                    <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"> @(Model[i].bio) </td>
+                    <td> @Model[i].BirthDate.ToString("dd/MM/yyyy") </td>
+                    <td> <span class="glyphicon glyphicon-remove text-danger"></span> </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
