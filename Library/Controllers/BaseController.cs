@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Library.Models;
 using Microsoft.AspNet.Identity.Owin;
+using System.Globalization;
 
 namespace Library.Controllers
 {
@@ -41,6 +42,8 @@ namespace Library.Controllers
         public BaseController()
         {
             _context = new ApplicationDbContext();
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("ar-EG");
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ar-EG");
         }
     
 

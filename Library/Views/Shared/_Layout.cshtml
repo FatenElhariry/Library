@@ -4,9 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+    @Styles.Render("~/Content/css")
+    
+    @Scripts.Render("~/bundles/modernizr")
+    @*<script src="~/assets/plugins/"></script>*@
+    @*<link href="~/assets/plugins/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet" />*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,5 +43,80 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @if(HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Author")
+    {
+        <script>
+            $(function () {
+                $("#photo").on("change", function (event) {
+                   var reader = new FileReader();
+                   var file = $(this).prop("files")[0];
+                   
+                   reader.onload = function (e) {
+                       
+                       $("#authorImg").attr("src", this.result);
+                   };
+                   reader.readAsDataURL(file);
+                    
+
+                });
+                $("table.AuthorList tr").on("click", function () {
+                    var id = $(this).attr("data-id");
+                    $.ajax({
+                        url: "@Url.Action("Edit","Author")",
+                        contentType: "application/html",
+                        data: { id: id },
+                        success: function (data) {
+                            if (data)
+                            {
+                                $("div.HeaderContant").html(data);
+                                $("#Name").focus();
+                            }
+                        },
+                        error: function () {
+
+                        }
+                    });
+
+                });
+                $("button[id^='Delbtn_']").on("click", function (event) {
+                    event.stopImmediatePropagation();
+                    var id = $(this).attr("data-id");
+                    $this = this;
+                    app.notifiy("حذف ", "هل تريد حذف الكاتب ؟", "warning", true, function () {
+                        
+                        $.ajax({
+                            url: "@Url.Action("DeleteAuthor","Author")",
+                            contentType: "application/json",
+                            data: { id: id },
+                            success: function (data) {
+                                if (data == true) {
+                                    
+                                    $($this).parents("tr").remove();
+                                    toastr.success("تم الحذف بنجاح", "حذف");
+                                }
+                                else
+                                    toastr.error("حدث خطأ أعد تحميل الصفحة","خطأ")
+                            },
+                            error: function () { }
+
+                        })
+
+                    });//endd ajax function
+
+                });
+
+            });
+        </script>
+    }
+    else if(HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Category")
+    {
+        <script>
+            $(function () {
+
+            });
+        </script>
+    }
+    <script src="~/Scripts/shared.js"></script>
 </body>
 </html>

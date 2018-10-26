@@ -6,8 +6,9 @@
 }
 
 <div class="container-fluid">
-    @Html.Partial("~/Views/Author/Partials/Edit.cshtml",(Author)ViewBag.Author ?? new Author())
-
+    <div class="HeaderContant">
+        @Html.Partial("~/Views/Author/Partials/Edit.cshtml", (Author)ViewBag.Author ?? new Author())
+    </div>
     <div class="panel">
         <div class="panel-heading">
 
@@ -19,6 +20,10 @@
 </div>
 @section scripts{
 <script>
- 
+  
+    $(function () {
+      
+});
+
 </script>    
 }

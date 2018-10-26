@@ -4,7 +4,7 @@
             text-align:center;
         }
     </style>
-<table class="table table-responsive table-bordered" style="table-layout:fixed;">
+<table class="table table-responsive table-bordered AuthorList" style="table-layout:fixed;">
     <thead>
         <tr>
             <th width="5%"> م </th>
@@ -25,12 +25,12 @@
         {
             for (int i = 0; i < Model.Count; i++ )
             {
-                <tr>
+                <tr data-id="@Model[i].Id">
                     <td> @( i + 1 ) </td>
                     <td> @(Model[i].Name) </td>
                     <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"> @(Model[i].bio) </td>
-                    <td> @Model[i].BirthDate.ToString("dd/MM/yyyy") </td>
-                    <td> <span class="glyphicon glyphicon-remove text-danger"></span> </td>
+                    <td> @Model[i].BirthDate </td>
+                    <td> <button type="button" data-id="@Model[i].Id" id="Delbtn_@Model[i].Id" class="btn"><span class="glyphicon glyphicon-remove text-danger delete" ></span></button> </td>
                 </tr>
             }
         }

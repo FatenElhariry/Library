@@ -60,3 +60,19 @@ div label.label {
     font-weight: bold;
     padding: 5px 17px;
 }
+
+span.glyphicon.glyphicon-remove.text-danger.delete:hover {
+    color: #f93a66;
+    /*border: 1px red solid;*/
+    
+    transition: 1s;
+    transform: rotate(90deg);
+}
+span.glyphicon.glyphicon-remove.text-danger.delete{
+    font-size:x-large;
+}
+table tr th,table tr td {
+    text-align:center;
+    vertical-align:middle !important;
+    cursor:pointer;
+}

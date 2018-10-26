@@ -16,8 +16,8 @@ namespace Library.Models
         public string Description { get; set; }
         public int ViewersNum { get; set; }
 
-
-        public DateTime PublishDate { get; set; }
+        [MaxLength(100)]
+        public string PublishDate { get; set; }
         public int AvaliableNum { get; set; }
         public string coverPath { get; set; }
         

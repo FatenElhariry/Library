@@ -95,9 +95,12 @@ F:\Freelance\Library\Library\bin\Microsoft.AI.WindowsServer.xml
 F:\Freelance\Library\Library\bin\Microsoft.AI.Web.xml
 F:\Freelance\Library\Library\obj\Debug\Library.dll
 F:\Freelance\Library\Library\obj\Debug\Library.pdb
-F:\Freelance\Library\Library\obj\Debug\Library.Migrations.initial.resources
 F:\Freelance\Library\Library\obj\Debug\Library.csproj.GenerateResource.Cache
-F:\Freelance\Library\Library\obj\Debug\Library.Migrations.UpdateUserRoles.resources
-F:\Freelance\Library\Library\obj\Debug\Library.Migrations.AddUserFileTabel.resources
-F:\Freelance\Library\Library\obj\Debug\Library.Migrations.UpdateUserData.resources
-F:\Freelance\Library\Library\obj\Debug\Library.Migrations.AddBooksDetails.resources
+F:\Freelance\Library\Library\obj\Debug\Library.Models.RESX.Book.resources
+F:\Freelance\Library\Library\bin\ar-eg\Library.resources.dll
+F:\Freelance\Library\Library\obj\Debug\Library.Models.RESX.Book.ar-eg.resources
+F:\Freelance\Library\Library\obj\Debug\ar-eg\Library.resources.dll
+F:\Freelance\Library\Library\obj\Debug\Library.Migrations.initial.resources
+F:\Freelance\Library\Library\obj\Debug\Library.Views.Shared.Resource1.resources
+F:\Freelance\Library\Library\obj\Debug\Library.Migrations.ParentCategory.resources
+F:\Freelance\Library\Library\obj\Debug\Library.Migrations.ParentCategory1.resources
