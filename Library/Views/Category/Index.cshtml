@@ -1,0 +1,153 @@
+﻿@using Library.ViewModel;
+@using Library.Views.Shared
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h4>تصنيفات الكتب </h4>
+    </div>
+    <div class="panel-body">
+        <div class="CategoryTree" id="CategoryTree">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="AddCategory">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="display:inline-block;"> إضافة صنف أدبى جديد </h3>
+                <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label style="width:100%;">
+                            الاسم 
+                            <input type="text" id="CatName" class="form-control"/>
+                        </label>
+                    </div>
+                    <input type="hidden" id="Id" name="Id" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="SaveCat"> @Resource1.Save </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> @Resource1.Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var CategoryTree = (function () {
+            
+            
+            return {
+                RefreshTree: function () {
+                    $.get("@Url.Action("GetTreeData","Category")", function (data) {
+                        $("#CategoryTree").jstree(true).settings.core.data = data;
+                        $("#CategoryTree").jstree(true).refresh();
+                    })
+                },
+                GetSelectedNode: function () {
+                    return $("#CategoryTree").jstree("get_selected", true)[0];
+                },
+                AddNewNode: function () {
+                },
+                DeleteNode: function (id) {
+                    $.get("@Url.Action("DeleteCategory","Category")?id=" + id, function (data) {
+                        if (data) {
+                            CategoryTree.RefreshTree();
+                            toastr.success("@Resource1.successRemoveMsg", "@Resource1.successTitle");
+                        } else
+                            toastr.error("@Resource1.errorMsg", "@Resource1.errorTitle");
+                    });
+                }
+            }
+        })()
+        $(function () {
+
+
+            var contextmenu = function ($node) {
+                return {
+                    createItem: {
+                        "label": "إضافة",
+                        "action": function (obj) {
+                            $("#AddCategory").modal("toggle");
+                        },
+                        "_class": ""
+                    },
+                    deleteItem: {
+                        "label": "حذف",
+                        "action": function (obj) {
+                            var node = CategoryTree.GetSelectedNode();
+                            CategoryTree.DeleteNode(node.id);
+                        }
+                    },
+                    renameItem: {
+                        "label": "تعديل",
+                        "action": function () {
+                            $("#AddCategory").modal("toggle");
+                            $("#Id").val($node.id);
+                            $("#CatName").val($node.text);   
+                        }
+                    }
+
+                };
+            }
+
+            $.ajax({
+                url: "@Url.Action("GetTreeData","Category")",
+                contentType: "application/json",
+                success: function (data) {
+
+                    $("#CategoryTree").jstree({
+                        "core": {
+                            data: data
+                        },
+                        contextmenu: {
+                               items: contextmenu
+                        },
+                        "plugins": [
+                            "contextmenu", "dnd", "search",
+                            "state", "types", "wholerow"
+                        ]
+                    });
+
+                },
+                error: function () {
+                    console.log("Error Happened");
+                }
+            });
+
+            $("#SaveCat").on("click", function (event) {
+                var text = $("#CatName").val();
+                var data = $("#CategoryTree").jstree("get_selected", true)[0];
+                var parentId = (data.id != "0" ? data.id : null);
+                var id = $("#Id").val();
+                $.ajax({
+                    url: "@Url.Action("AddCategory","Category")",
+                    contentType: "application/json",
+                    data: { Name: text, parent: parentId, Id: id },
+                    success: function (_data) {
+                        if (_data) {
+                            $("#AddCategory").modal("toggle");
+                            CategoryTree.RefreshTree();
+                            toastr.success("@Resource1.successAddMsg", "@Resource1.successTitle");
+                        } else
+                            toastr.error("@Resource1.errorMsg", "@Resource1.errorTitle");
+                    },
+                    error: function () {
+                    }
+                })
+            });
+        });
+    </script>
+}

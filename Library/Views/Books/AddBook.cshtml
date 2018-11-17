@@ -1,0 +1,32 @@
+﻿@model Library.Models.Book
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel">
+    <div class="panel-heading">
+
+    </div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("AddBook", "Books", new AjaxOptions() { }, new { id = "FRMAddBook" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(c=>c.Title)
+                @Html.TextBoxFor(c => c.Title, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c=>c.AuthorId)
+                @Html.TextBoxFor(c => c.AuthorId, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c=>c.Description)
+                @Html.TextAreaFor(c=>c.Description , new { @class = "form-control"})
+            </div>
+            <div class="form-group">
+
+            </div>
+
+        }
+    </div>
+</div>
+
