@@ -10,6 +10,7 @@ namespace Library
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/assets/plugins/jquery-ui/jquery-ui.min.js",
                         "~/assets/plugins/bootstrap-toastr/toastr.min.js",
                         "~/assets/plugins/bootstrap-sweetalert/sweetalert.min.js",
                         "~/assets/plugins/jstree/dist/jstree.min.js"));
@@ -29,6 +30,7 @@ namespace Library
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome/css/font-awesome.min.css",
+                      "~/assets/plugins/jquery-ui/jquery-ui.min.css",
                       "~/assets/plugins/bootstrap-toastr/toastr-rtl.min.css",
                       "~/assets/plugins/bootstrap-sweetalert/sweetalert.css",
                       "~/assets/plugins/jstree/dist/themes/default/style.min.css"
